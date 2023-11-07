@@ -1,0 +1,20 @@
+[
+  {
+    "dialogue_id": "01_intro",
+    "statements": [
+      {
+        "set_music": "desert"
+      },
+      {
+        "delay": 2
+      },
+      {
+        "set_background": "intro_desert"
+      },
+      {
+        "speaker": null,
+        "text": "Hello"
+      }
+    ]
+  }
+]

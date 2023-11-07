@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.cl": "cuda-cpp",
+    "iosfwd": "cpp"
+  }
+}
