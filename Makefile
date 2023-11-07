@@ -25,7 +25,7 @@ OBJ_FILES=obj/Main.o obj/Application.o\
 	obj/Story.o\
 	obj/PlayState.o\
 
-OUT=game
+OUT=npadv
 
 obj/Main.o: src/Main.cpp
 	${CPP} $(CFLAGS) -o obj/Main.o -c src/Main.cpp
