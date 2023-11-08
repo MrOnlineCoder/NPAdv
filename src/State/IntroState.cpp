@@ -24,6 +24,14 @@ void IntroState::onEnter()
 
 void IntroState::onInput(sf::Event ev)
 {
+    if (ev.type == sf::Event::KeyReleased)
+    {
+        if (ev.key.code == sf::Keyboard::Escape)
+        {
+            m_gameContext.stateManager->changeState(StateType::MENU);
+            m_introSound.stop();
+        }
+    }
 }
 
 void IntroState::onRender()

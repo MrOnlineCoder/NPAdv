@@ -48,7 +48,7 @@ void MenuState::onEnter()
 
 void MenuState::onInput(sf::Event ev)
 {
-    if (ev.type == sf::Event::KeyPressed)
+    if (ev.type == sf::Event::KeyPressed && !m_startingGame)
     {
         m_music.stop();
         m_startingGame = true;

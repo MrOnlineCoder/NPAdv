@@ -26,7 +26,7 @@ struct StoryDialogueChoiceItem
 struct StoryDialogueStatement
 {
     std::wstring text;
-    std::string speaker;
+    std::wstring speaker;
     std::string nextDialogueId;
     std::string setBackgroundId;
     std::string setMusicId;

@@ -63,7 +63,7 @@ void Story::loadFromFile(const std::string &filename)
         for (auto statement : node["statements"])
         {
             StoryDialogueStatement stmt;
-            stmt.speaker = "";
+            stmt.speaker = L"";
             if (statement.contains("text"))
             {
                 std::string utf8text = statement["text"];
@@ -74,7 +74,7 @@ void Story::loadFromFile(const std::string &filename)
 
             if (statement.contains("speaker") && statement["speaker"].is_string())
             {
-                stmt.speaker = statement["speaker"];
+                stmt.speaker = converter.from_bytes(statement["speaker"]);
             }
 
             if (statement.contains("next_dialogue_id"))
