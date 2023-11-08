@@ -15,16 +15,19 @@ PlayState::PlayState(GameContext *_gameCtx)
     m_minigame = nullptr;
 
     m_bgMusic.setVolume(90);
+    m_bgMusic.setLoop(true);
 }
 
 void PlayState::onEnter()
 {
     m_dialogueUi.hide();
     m_story.startFromBeginning();
-    progressStory();
+    m_gameContext.eval.reset();
 
     // DEBUG
-    // m_story.switchToDialogue("02_barmen");
+    m_story.switchToDialogue("02_bottles_game_win");
+
+    progressStory();
 }
 
 void PlayState::onInput(sf::Event ev)
@@ -106,6 +109,16 @@ void PlayState::progressStory()
     auto stmt = m_story.getCurrentStatement();
 
     bool consumeNextStatement = false;
+
+    if (stmt.condition.length())
+    {
+        if (!m_gameContext.eval.evalCondition(stmt.condition))
+        {
+            m_story.nextStatement();
+            progressStory();
+            return;
+        }
+    }
 
     if (stmt.type == StoryDialogueStatementType::SET_MUSIC)
     {
@@ -193,6 +206,12 @@ void PlayState::progressStory()
             m_minigame = new QuickShootMinigame(m_gameContext);
             m_minigame->start();
         }
+    }
+    else if (stmt.type == StoryDialogueStatementType::SET_VARIABLE)
+    {
+        m_gameContext.eval.setVariable(
+            stmt.setVariableName);
+        consumeNextStatement = true;
     }
 
     if (consumeNextStatement && !m_story.isDialogueFinished())

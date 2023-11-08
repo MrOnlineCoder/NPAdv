@@ -14,7 +14,8 @@ enum class StoryDialogueStatementType
     DELAY = 6,
     TOGGLE_UI = 7,
     PLAY_SOUND = 8,
-    MINIGAME = 9
+    MINIGAME = 9,
+    SET_VARIABLE = 10
 };
 
 struct StoryDialogueChoiceItem
@@ -36,12 +37,15 @@ struct StoryDialogueStatement
     float delayTime;
     bool uiVisibilityFlag;
     bool smoothTransition;
+    std::string condition;
 
     std::string minigame;
     std::string minigameWinDialogue;
     std::string minigameLoseDialogue;
 
     StoryDialogueStatementType type;
+
+    std::string setVariableName;
 };
 
 struct StoryDialogue

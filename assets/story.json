@@ -390,7 +390,7 @@
         "toggle_ui": false
       },
       {
-        "set_background": "tavern_inside",
+        "set_background": "tavern_eat",
         "smooth": true
       },
       {
@@ -444,7 +444,13 @@
     "dialogue_id": "03_select",
     "statements": [
       {
+        "toggle_ui": false
+      },
+      {
         "set_background": "tavern_inside"
+      },
+      {
+        "toggle_ui": true
       },
       {
         "text": "До кого б звернутись далі з присутніх?"
@@ -453,6 +459,7 @@
         "choices": [
           {
             "text": "Таємничий чоловік в чорному костюмі",
+            "if": "not torres_denied and not torres_passed",
             "next_dialogue_id": "04_torres_01"
           },
           {
@@ -464,8 +471,9 @@
             "next_dialogue_id": "04_sviat_01"
           },
           {
-            "text": "Гордовита жінка в кутку",
-            "next_dialogue_id": "04_mary_01"
+            "text": "Гордовита жінка з книгою",
+            "next_dialogue_id": "04_mary",
+            "if": "not mary_refused"
           }
         ]
       }
@@ -655,6 +663,269 @@
       },
       {
         "set_music": "tavern"
+      },
+      {
+        "set_variable": "torres_denied"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_torres_04",
+    "statements": [
+      {
+        "text": "Давай спробуємо"
+      },
+      {
+        "text": "Чудово. Тоді слухай уважно",
+        "speaker": "Torres"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Бачив же вивіску на вході сюди?",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Ні, я був голодним і залетів не дивлячись на якусь там вивіску"
+      },
+      {
+        "text": "Ясно",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Ну власне спереді там лише дві букви - N P",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Але сзаду там маленькими буквами вирізані наступні слова:",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'І прибули тоді три всадника кінця'",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'Нитік, '",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'П'яниця'",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'і Пиздуниця'",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'Потухло світло нашого Отця'",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'Лиш переможник трьох цих бід'",
+        "speaker": "Torres"
+      },
+      {
+        "text": "'Здатний повернутися у світ'",
+        "speaker": "Torres"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Якось так.",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Розшифрувати я це поки не можу, можливо в тебе клепка краще спрацює.",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Цікаве спостереження. А це не може бути просто жарт якийсь, який хтось з присутніх написав?"
+      },
+      {
+        "text": "Може бути",
+        "speaker": "Torres"
+      },
+      {
+        "text": "А може й ні. Порох на цих словах вже давно...",
+        "speaker": "Torres"
+      },
+      {
+        "text": "Я тобі передав все що знав, а зараз відійду, щоб не привертати увагу",
+        "speaker": "Torres"
+      },
+      {
+        "set_variable": "torres_passed"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "set_music": "not_as"
+      },
+      {
+        "delay": 3
+      },
+      {
+        "set_background": "tavern_mary",
+        "smooth": true
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "...",
+        "speaker": "Жінка",
+        "if": "not torres_passed"
+      },
+      {
+        "text": "Хто ти такий? Не заважай мені, я зараз занята",
+        "speaker": "Жінка",
+        "if": "not torres_passed"
+      },
+      {
+        "set_music": "tavern",
+        "if": "not torres_passed"
+      },
+      {
+        "next_dialogue_id": "03_select",
+        "if": "not torres_passed"
+      },
+      {
+        "text": "Нарешті звільнилась.",
+        "speaker": "Жінка"
+      },
+      {
+        "text": "Можна і поговорити трохи, поки є вільний час.",
+        "speaker": "Жінка"
+      },
+      {
+        "text": "Ким будеш, чоловіче?",
+        "speaker": "Жінка"
+      },
+      {
+        "choices": [
+          {
+            "text": "Мимо проходив та попав якось сюди",
+            "next_dialogue_id": "04_mary_refused_01"
+          },
+          {
+            "text": "Ваш співбесідник на цей вечір",
+            "next_dialogue_id": "04_mary_02"
+          },
+          {
+            "text": "А ви хто?",
+            "next_dialogue_id": "04_mary_refused_02"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_refused_01",
+    "statements": [
+      {
+        "text": "Мимо проходив та попав якось сюди"
+      },
+      {
+        "text": "Мда... Ну та йди далі собі, в мене вже нова книжка є",
+        "speaker": "Жінка"
+      },
+      {
+        "set_music": "tavern"
+      },
+      {
+        "set_variable": "mary_refused"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_refused_02",
+    "statements": [
+      {
+        "text": "А ти хто?"
+      },
+      {
+        "text": "Мері я",
+        "speaker": "Mary"
+      },
+      {
+        "text": "Але питанням та питання... Бидло, йди геть",
+        "speaker": "Mary"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_music": "tavern"
+      },
+      {
+        "set_variable": "mary_refused"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_refused_02",
+    "statements": [
+      {
+        "text": "А ти хто?"
+      },
+      {
+        "text": "Мері я",
+        "speaker": "Mary"
+      },
+      {
+        "text": "Але питанням та питання... Бидло, йди геть",
+        "speaker": "Mary"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_music": "tavern"
+      },
+      {
+        "set_variable": "mary_refused"
       },
       {
         "next_dialogue_id": "03_select"

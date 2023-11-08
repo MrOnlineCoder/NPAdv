@@ -20,9 +20,12 @@ void Story::switchToDialogue(const std::string &id)
         {
             m_currentDialogue = &dialogue;
             m_currentStatementIndex = 0;
+            GetLogger().tag("Story") << "Switched to dialogue '" << id << "'.";
             return;
         }
     }
+
+    GetLogger().tag("Story") << "Failed to switch to dialogue '" << id << "'.";
 }
 
 const StoryDialogue &Story::getCurrentDialogue()
@@ -70,6 +73,11 @@ void Story::loadFromFile(const std::string &filename)
 
                 stmt.text = converter.from_bytes(utf8text);
                 stmt.type = StoryDialogueStatementType::SPEAK;
+            }
+
+            if (statement.contains("if"))
+            {
+                stmt.condition = statement["if"];
             }
 
             if (statement.contains("speaker") && statement["speaker"].is_string())
@@ -144,6 +152,12 @@ void Story::loadFromFile(const std::string &filename)
                 stmt.minigame = statement["minigame"];
                 stmt.minigameLoseDialogue = statement["lose_dialogue_id"];
                 stmt.minigameWinDialogue = statement["win_dialogue_id"];
+            }
+
+            if (statement.contains("set_variable"))
+            {
+                stmt.type = StoryDialogueStatementType::SET_VARIABLE;
+                stmt.setVariableName = statement["set_variable"];
             }
 
             dialogue.statements.push_back(stmt);

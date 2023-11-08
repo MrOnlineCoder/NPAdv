@@ -84,6 +84,7 @@ void DialogueUI::setStatement(const StoryDialogueStatement &stmt)
 
         for (auto choice : m_currentStatement.choices)
         {
+
             sf::Text choiceText;
             choiceText.setFont(m_context.assetManager->getFont("main"));
             choiceText.setFillColor(sf::Color::White);
@@ -97,6 +98,18 @@ void DialogueUI::setStatement(const StoryDialogueStatement &stmt)
             choiceText.setPosition(
                 m_text.getPosition().x + TEXT_FRAME_MARGIN / 2,
                 m_text.getPosition().y + m_text.getLocalBounds().height + TEXT_FRAME_MARGIN + choiceRow * (16 + 4 + CHOICE_ROWS_GAP));
+
+            if (choice.ifFlag.length() > 0)
+            {
+                bool willShowChoice = m_context.eval.evalCondition(choice.ifFlag);
+
+                if (!willShowChoice)
+                {
+                    // Still push the text to ease the detection, but hide it visually
+                    choiceText.setString(L"");
+                    choiceRow--;
+                }
+            }
 
             m_choiceTexts.push_back(choiceText);
 
