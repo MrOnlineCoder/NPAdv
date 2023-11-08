@@ -13,6 +13,8 @@ PlayState::PlayState(GameContext *_gameCtx)
     m_blackBgTexture.loadFromImage(blackImg);
 
     m_minigame = nullptr;
+
+    m_bgMusic.setVolume(90);
 }
 
 void PlayState::onEnter()
