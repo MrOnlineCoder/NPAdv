@@ -24,7 +24,8 @@ OBJ_FILES=obj/Main.o obj/Application.o\
 	obj/IntroState.o\
 	obj/Story.o\
 	obj/PlayState.o\
-	obj/DialogueUI.o
+	obj/DialogueUI.o\
+	obj/QuickShootMinigame.o
 
 OUT=npadv
 
@@ -66,6 +67,9 @@ obj/Story.o: src/Game/Story.cpp include/Game/Story.hpp
 
 obj/DialogueUI.o: src/Game/DialogueUI.cpp include/Game/DialogueUI.hpp
 	${CPP} $(CFLAGS) -o obj/DialogueUI.o -c src/Game/DialogueUI.cpp
+
+obj/QuickShootMinigame.o: src/Game/QuickShootMinigame.cpp include/Game/QuickShootMinigame.hpp include/Game/Minigame.hpp
+	${CPP} $(CFLAGS) -o obj/QuickShootMinigame.o -c src/Game/QuickShootMinigame.cpp
 
 mkdir:
 	mkdir -p obj/

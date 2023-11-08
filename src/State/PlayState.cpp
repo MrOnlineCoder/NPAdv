@@ -1,4 +1,7 @@
 #include <State/PlayState.hpp>
+
+#include <Game/QuickShootMinigame.hpp>
+
 PlayState::PlayState(GameContext *_gameCtx)
     : State(_gameCtx), m_dialogueUi(*_gameCtx)
 {
@@ -8,6 +11,8 @@ PlayState::PlayState(GameContext *_gameCtx)
     sf::Image blackImg;
     blackImg.create(1920, 1080, sf::Color::Black);
     m_blackBgTexture.loadFromImage(blackImg);
+
+    m_minigame = nullptr;
 }
 
 void PlayState::onEnter()
@@ -22,6 +27,12 @@ void PlayState::onEnter()
 
 void PlayState::onInput(sf::Event ev)
 {
+    if (m_minigame && !m_minigame->isFinished())
+    {
+        m_minigame->input(ev);
+        return;
+    }
+
     if (ev.type == sf::Event::MouseButtonReleased)
     {
         if (ev.mouseButton.button == sf::Mouse::Left)
@@ -53,6 +64,12 @@ void PlayState::onInput(sf::Event ev)
 
 void PlayState::onRender()
 {
+    if (m_minigame && !m_minigame->isFinished())
+    {
+        m_minigame->render();
+        return;
+    }
+
     m_gameContext.window.draw(m_bg);
 
     m_dialogueUi.render();
@@ -60,9 +77,16 @@ void PlayState::onRender()
 
 void PlayState::onUpdate(float frameDelta)
 {
-    checkStatementCompletion();
+    if (m_minigame && !m_minigame->isFinished())
+    {
+        m_minigame->update(frameDelta);
+    }
+    else
+    {
+        checkStatementCompletion();
 
-    m_dialogueUi.update(frameDelta);
+        m_dialogueUi.update(frameDelta);
+    }
 }
 
 void PlayState::onLeave()
@@ -71,6 +95,8 @@ void PlayState::onLeave()
 
 PlayState::~PlayState()
 {
+    if (m_minigame)
+        delete m_minigame;
 }
 
 void PlayState::progressStory()
@@ -155,6 +181,16 @@ void PlayState::progressStory()
     {
         m_story.switchToDialogue(stmt.nextDialogueId);
         progressStory();
+        consumeNextStatement = false;
+    }
+    else if (stmt.type == StoryDialogueStatementType::MINIGAME)
+    {
+        if (stmt.minigame == "quick_shoot")
+        {
+            m_bgMusic.stop();
+            m_minigame = new QuickShootMinigame(m_gameContext);
+            m_minigame->start();
+        }
     }
 
     if (consumeNextStatement && !m_story.isDialogueFinished())
@@ -199,6 +235,26 @@ void PlayState::checkStatementCompletion()
             {
                 m_bg.setTexture(m_blackBgTexture);
             }
+        }
+    }
+    else if (stmt.type == StoryDialogueStatementType::MINIGAME)
+    {
+        if (m_minigame && m_minigame->isFinished())
+        {
+            if (m_minigame->hasUserWon())
+            {
+                m_story.switchToDialogue(
+                    m_story.getCurrentStatement().minigameWinDialogue);
+            }
+            else
+            {
+                m_story.switchToDialogue(
+                    m_story.getCurrentStatement().minigameLoseDialogue);
+            }
+
+            m_dialogueUi.show();
+
+            progressStory();
         }
     }
 }

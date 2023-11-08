@@ -6,6 +6,8 @@
 #include <Game/Story.hpp>
 #include <Game/DialogueUI.hpp>
 
+#include <Game/Minigame.hpp>
+
 class PlayState : public State
 {
 public:
@@ -34,6 +36,8 @@ private:
     sf::Clock m_delayClock;
     sf::Clock m_smoothClock;
     sf::Sound m_storySound;
+
+    Minigame *m_minigame;
 };
 
 #endif

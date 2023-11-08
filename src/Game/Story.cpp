@@ -138,6 +138,14 @@ void Story::loadFromFile(const std::string &filename)
                 stmt.type = StoryDialogueStatementType::END_GAME;
             }
 
+            if (statement.contains("minigame"))
+            {
+                stmt.type = StoryDialogueStatementType::MINIGAME;
+                stmt.minigame = statement["minigame"];
+                stmt.minigameLoseDialogue = statement["lose_dialogue_id"];
+                stmt.minigameWinDialogue = statement["win_dialogue_id"];
+            }
+
             dialogue.statements.push_back(stmt);
         }
 

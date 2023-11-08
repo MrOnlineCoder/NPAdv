@@ -261,6 +261,14 @@
         "set_background": "tavern_farid"
       },
       {
+        "minigame": "quick_shoot",
+        "win_dialogue_id": "02_bottles_game_win",
+        "lose_dialogue_id": "02_bottles_game_lose"
+      },
+      {
+        "set_background": "tavern_farid"
+      },
+      {
         "toggle_ui": true
       },
       {
@@ -332,7 +340,50 @@
   },
   {
     "dialogue_id": "02_bottles_game",
-    "statements": []
+    "statements": [
+      {
+        "speaker": "Farid",
+        "text": "вот и хорошо. значит в свое время я уничтожал 10 целей за 10 секунд. если сможешь также или лучше - плов твой, иначе - це кінець"
+      },
+      {
+        "minigame": "quick_shoot",
+        "win_dialogue_id": "02_bottles_game_win",
+        "lose_dialogue_id": "02_bottles_game_lose"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "02_bottles_game_win",
+    "statements": [
+      {
+        "speaker": "Farid",
+        "text": "вот и хорошо. значит в свое время я уничтожал 10 целей за 10 секунд. если сможешь также или лучше - плов твой, иначе - це кінець"
+      },
+      {
+        "minigame": "quick_shoot",
+        "win_dialogue_id": "02_bottles_game_win",
+        "lose_dialogue_id": "02_bottles_game_lose"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "02_bottles_game_lose",
+    "statements": [
+      {
+        "set_background": "tavern_farid"
+      },
+      {
+        "speaker": "Farid",
+        "text": "бля ну ты ваще дебс даже не знаю что и сказать - Рома Шаповалов и то бы лучше пострелял"
+      },
+      {
+        "speaker": "Farid",
+        "text": "прийдеться тебе уйти нахуй"
+      },
+      {
+        "next_dialogue_id": "ending_02_kicked_out"
+      }
+    ]
   },
   {
     "dialogue_id": "ending_01_shot_dead",
@@ -358,6 +409,9 @@
       },
       {
         "text": "Будучи бувалим стрілком з бойовим досвідом з Варзони, бармен встиг вистрелити вам в голову з дробовика 12 калібру ще до того як ви встигли нанести йому удар"
+      },
+      {
+        "play_sound": "bad_ending"
       },
       {
         "text": "Ви померли. Історія закінчена"
@@ -392,6 +446,9 @@
       },
       {
         "text": "Вас вигнали з єдиної будівлі в усій пустелі, де можна було щось поїсти"
+      },
+      {
+        "play_sound": "bad_ending"
       },
       {
         "text": "Через декілька днів ви померли від виснаження і голоду. Історія закінчена"

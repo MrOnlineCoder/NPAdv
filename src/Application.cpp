@@ -29,6 +29,8 @@ void Application::loadAssets()
     // Background
     m_gameContext.assetManager->loadAllTexturesInFolder("backgrounds");
 
+    m_gameContext.assetManager->loadAllTexturesInFolder("targets");
+
     // Sounds
     m_gameContext.assetManager->loadAllSoundsInFolder("sounds");
 }
