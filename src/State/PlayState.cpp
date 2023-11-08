@@ -13,7 +13,11 @@ PlayState::PlayState(GameContext *_gameCtx)
 void PlayState::onEnter()
 {
     m_dialogueUi.hide();
+    m_story.startFromBeginning();
     progressStory();
+
+    // DEBUG
+    m_story.switchToDialogue("02_barmen");
 }
 
 void PlayState::onInput(sf::Event ev)
@@ -146,6 +150,11 @@ void PlayState::progressStory()
     {
         m_bgMusic.stop();
         m_gameContext.stateManager->changeState(StateType::MENU);
+    }
+    else if (stmt.type == StoryDialogueStatementType::NEXT_DIALOGUE)
+    {
+        m_story.switchToDialogue(stmt.nextDialogueId);
+        progressStory();
     }
 
     if (consumeNextStatement && !m_story.isDialogueFinished())

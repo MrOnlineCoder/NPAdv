@@ -145,7 +145,7 @@ void Story::loadFromFile(const std::string &filename)
         GetLogger().tag("Story") << "Loaded dialogue '" << dialogue.id << "' with " << (int)dialogue.statements.size() << " statements.";
     }
 
-    m_currentDialogue = &m_dialogues[0];
+    startFromBeginning();
 
     GetLogger().tag("Story") << "Loaded story file '" << filename << "' with " << (int)m_dialogues.size() << " dialogues.";
 }
@@ -153,4 +153,10 @@ void Story::loadFromFile(const std::string &filename)
 bool Story::canSkipCurrentStatement()
 {
     return getCurrentStatement().type == StoryDialogueStatementType::SPEAK;
+}
+
+void Story::startFromBeginning()
+{
+    m_currentStatementIndex = 0;
+    m_currentDialogue = &m_dialogues[0];
 }

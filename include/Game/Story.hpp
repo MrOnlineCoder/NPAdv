@@ -61,6 +61,8 @@ public:
 
     bool canSkipCurrentStatement();
 
+    void startFromBeginning();
+
 private:
     std::vector<StoryDialogue> m_dialogues;
     std::size_t m_currentStatementIndex;
