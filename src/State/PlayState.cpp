@@ -23,6 +23,7 @@ void PlayState::onInput(sf::Event ev)
         if (ev.mouseButton.button == sf::Mouse::Left)
         {
             finishSpeakingOrProgress();
+            return;
         }
     }
 
@@ -31,6 +32,17 @@ void PlayState::onInput(sf::Event ev)
         if (ev.key.code == sf::Keyboard::Space)
         {
             finishSpeakingOrProgress();
+            return;
+        }
+    }
+
+    if (m_dialogueUi.isShown())
+    {
+        auto uiResult = m_dialogueUi.input(ev);
+        if (uiResult == DialogueUiInputResult::SWITCH_DIALOGUE)
+        {
+            m_story.switchToDialogue(m_dialogueUi.getSelectedChoice().nextDialogueId);
+            progressStory();
         }
     }
 }
@@ -124,6 +136,17 @@ void PlayState::progressStory()
         m_storySound.play();
         consumeNextStatement = true;
     }
+    else if (stmt.type == StoryDialogueStatementType::CHOICE)
+    {
+        m_dialogueUi.show();
+        m_dialogueUi.setStatement(stmt);
+        consumeNextStatement = false;
+    }
+    else if (stmt.type == StoryDialogueStatementType::END_GAME)
+    {
+        m_bgMusic.stop();
+        m_gameContext.stateManager->changeState(StateType::MENU);
+    }
 
     if (consumeNextStatement && !m_story.isDialogueFinished())
     {
@@ -179,7 +202,10 @@ void PlayState::finishSpeakingOrProgress()
     }
     else
     {
-        m_story.nextStatement();
-        progressStory();
+        if (m_story.canSkipCurrentStatement())
+        {
+            m_story.nextStatement();
+            progressStory();
+        }
     }
 }

@@ -18,7 +18,7 @@ enum class StoryDialogueStatementType
 
 struct StoryDialogueChoiceItem
 {
-    std::string text;
+    std::wstring text;
     std::string nextDialogueId;
     std::string ifFlag;
 };
@@ -58,6 +58,8 @@ public:
     void loadFromFile(const std::string &filename);
 
     bool isDialogueFinished();
+
+    bool canSkipCurrentStatement();
 
 private:
     std::vector<StoryDialogue> m_dialogues;

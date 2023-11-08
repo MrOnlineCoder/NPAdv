@@ -44,12 +44,21 @@ void MenuState::onEnter()
 {
     m_music.play();
     m_startingGame = false;
+    m_startingGame = false;
+    m_startClock.restart();
+    m_fadeRect.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
 void MenuState::onInput(sf::Event ev)
 {
     if (ev.type == sf::Event::KeyPressed && !m_startingGame)
     {
+        if (ev.key.code == sf::Keyboard::Escape)
+        {
+            m_gameContext.window.close();
+            return;
+        }
+
         m_music.stop();
         m_startingGame = true;
         m_startClock.restart();

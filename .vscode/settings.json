@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "*.cl": "cuda-cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "vector": "cpp"
   }
 }

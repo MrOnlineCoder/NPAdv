@@ -124,13 +124,18 @@ void Story::loadFromFile(const std::string &filename)
                 for (auto choiceNode : statement["choices"])
                 {
                     StoryDialogueChoiceItem choice;
-                    choice.text = choiceNode["text"];
+                    choice.text = converter.from_bytes(choiceNode["text"]);
                     choice.nextDialogueId = choiceNode["next_dialogue_id"];
                     if (choiceNode.contains("if"))
                         choice.ifFlag = choiceNode["if"];
                     stmt.choices.push_back(choice);
                 }
                 stmt.type = StoryDialogueStatementType::CHOICE;
+            }
+
+            if (statement.contains("end_game"))
+            {
+                stmt.type = StoryDialogueStatementType::END_GAME;
             }
 
             dialogue.statements.push_back(stmt);
@@ -143,4 +148,9 @@ void Story::loadFromFile(const std::string &filename)
     m_currentDialogue = &m_dialogues[0];
 
     GetLogger().tag("Story") << "Loaded story file '" << filename << "' with " << (int)m_dialogues.size() << " dialogues.";
+}
+
+bool Story::canSkipCurrentStatement()
+{
+    return getCurrentStatement().type == StoryDialogueStatementType::SPEAK;
 }

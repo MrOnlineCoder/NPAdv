@@ -4,6 +4,8 @@
 const int TEXT_FRAME_MARGIN = 16;
 const float TEXT_TYPING_SPEED = 0.02;
 
+const int CHOICE_ROWS_GAP = 10;
+
 DialogueUI::DialogueUI(GameContext &_context) : m_context(_context)
 {
     m_text.setFont(m_context.assetManager->getFont("main"));
@@ -46,33 +48,66 @@ void DialogueUI::setStatement(const StoryDialogueStatement &stmt)
     m_currentStatement = stmt;
     m_lastTypedPosition = 0;
     m_isTyping = true;
-    m_text.setString("");
 
-    if (m_currentStatement.speaker.length())
+    if (stmt.type == StoryDialogueStatementType::SPEAK)
     {
-        m_speakerName.setString(stmt.speaker);
-        m_speakerFrame.setSize(
-            sf::Vector2f(
-                m_speakerName.getLocalBounds().width + TEXT_FRAME_MARGIN * 2,
-                m_speakerName.getLocalBounds().height + TEXT_FRAME_MARGIN));
+        m_text.setString("");
 
-        m_speakerFrame.setPosition(
-            m_textFrame.getPosition() - sf::Vector2f(
-                                            0, m_speakerFrame.getSize().y + TEXT_FRAME_MARGIN / 2));
-        m_speakerName.setPosition(
-            m_speakerFrame.getPosition() + sf::Vector2f(
-                                               TEXT_FRAME_MARGIN, TEXT_FRAME_MARGIN / 2));
+        if (m_currentStatement.speaker.length())
+        {
+            m_speakerName.setString(stmt.speaker);
+            m_speakerFrame.setSize(
+                sf::Vector2f(
+                    m_speakerName.getLocalBounds().width + TEXT_FRAME_MARGIN * 2,
+                    m_speakerName.getLocalBounds().height + TEXT_FRAME_MARGIN));
+
+            m_speakerFrame.setPosition(
+                m_textFrame.getPosition() - sf::Vector2f(
+                                                0, m_speakerFrame.getSize().y + TEXT_FRAME_MARGIN / 2));
+            m_speakerName.setPosition(
+                m_speakerFrame.getPosition() + sf::Vector2f(
+                                                   TEXT_FRAME_MARGIN, TEXT_FRAME_MARGIN / 2));
+        }
+        else
+        {
+            m_speakerName.setString("");
+            m_speakerFrame.setPosition(-500, -500);
+        }
     }
-    else
+
+    if (isShowingChoices())
     {
-        m_speakerName.setString("");
-        m_speakerFrame.setPosition(-500, -500);
+        m_choiceTexts.clear();
+        m_isTyping = false;
+
+        int choiceRow = 0;
+
+        for (auto choice : m_currentStatement.choices)
+        {
+            sf::Text choiceText;
+            choiceText.setFont(m_context.assetManager->getFont("main"));
+            choiceText.setFillColor(sf::Color::White);
+            choiceText.setOutlineColor(sf::Color::Black);
+            choiceText.setOutlineThickness(0.5f);
+            choiceText.setCharacterSize(16);
+            std::wstring wstr = L"> ";
+            wstr += choice.text;
+
+            choiceText.setString(wstr);
+            choiceText.setPosition(
+                m_text.getPosition().x + TEXT_FRAME_MARGIN / 2,
+                m_text.getPosition().y + m_text.getLocalBounds().height + TEXT_FRAME_MARGIN + choiceRow * (16 + 4 + CHOICE_ROWS_GAP));
+
+            m_choiceTexts.push_back(choiceText);
+
+            choiceRow++;
+        }
     }
 }
 
 void DialogueUI::update(float frameDelta)
 {
-    if (isTyping())
+    if (isTyping() && !isShowingChoices())
     {
         if (m_typingClock.getElapsedTime().asSeconds() > TEXT_TYPING_SPEED)
         {
@@ -86,6 +121,24 @@ void DialogueUI::update(float frameDelta)
             else
             {
                 finishTyping();
+            }
+        }
+    }
+
+    if (isShowingChoices())
+    {
+        for (auto &choiceText : m_choiceTexts)
+        {
+            auto mousePos = sf::Mouse::getPosition(m_context.window);
+            auto mousePosWorld = m_context.window.mapPixelToCoords(mousePos);
+
+            if (choiceText.getGlobalBounds().contains(mousePosWorld))
+            {
+                choiceText.setFillColor(sf::Color::Yellow);
+            }
+            else
+            {
+                choiceText.setFillColor(sf::Color::White);
             }
         }
     }
@@ -105,6 +158,14 @@ void DialogueUI::render()
     {
         m_context.window.draw(m_speakerFrame);
         m_context.window.draw(m_speakerName);
+    }
+
+    if (isShowingChoices())
+    {
+        for (auto choiceText : m_choiceTexts)
+        {
+            m_context.window.draw(choiceText);
+        }
     }
 }
 
@@ -140,4 +201,46 @@ void DialogueUI::fitText()
             m_text.getCharacterSize())
 
     );
+}
+
+bool DialogueUI::isShown()
+{
+    return m_isShown;
+}
+
+DialogueUiInputResult DialogueUI::input(sf::Event &ev)
+{
+    if (ev.type == sf::Event::MouseButtonPressed)
+    {
+        if (ev.mouseButton.button == sf::Mouse::Left)
+        {
+            if (isShowingChoices())
+            {
+                for (int i = 0; i < m_choiceTexts.size(); i++)
+                {
+                    auto &choiceText = m_choiceTexts[i];
+                    auto mousePos = sf::Mouse::getPosition(m_context.window);
+                    auto mousePosWorld = m_context.window.mapPixelToCoords(mousePos);
+
+                    if (choiceText.getGlobalBounds().contains(mousePosWorld))
+                    {
+                        m_selectedChoice = m_currentStatement.choices[i];
+                        return DialogueUiInputResult::SWITCH_DIALOGUE;
+                    }
+                }
+            }
+        }
+    }
+
+    return DialogueUiInputResult::NONE;
+}
+
+bool DialogueUI::isShowingChoices()
+{
+    return m_currentStatement.type == StoryDialogueStatementType::CHOICE;
+}
+
+StoryDialogueChoiceItem DialogueUI::getSelectedChoice()
+{
+    return m_selectedChoice;
 }
