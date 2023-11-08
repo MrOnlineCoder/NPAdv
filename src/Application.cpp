@@ -8,7 +8,7 @@
 Application::Application(ApplicationLaunchOptions options)
 {
     m_gameContext.window.create(
-        sf::VideoMode(1280, 720), "Game", sf::Style::Default);
+        sf::VideoMode(1920, 1080), "Game", sf::Style::Fullscreen);
     m_gameContext.window.setFramerateLimit(
         options.fps_limit);
     GetLogger().tag("Application") << "Created game window";

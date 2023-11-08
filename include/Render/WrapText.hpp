@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 namespace RenderUtils
 {
-    std::string wrapText(std::string string, unsigned width, const sf::Font &font, unsigned charicterSize, bool bold = false)
+    std::wstring wrapText(std::wstring string, unsigned width, const sf::Font &font, unsigned charicterSize, bool bold = false)
     {
         unsigned currentOffset = 0;
         bool firstWord = true;
@@ -33,7 +33,7 @@ namespace RenderUtils
             if (!firstWord && currentOffset > width)
             {
                 pos = wordBegining;
-                string[pos] = '\n';
+                string[pos] = L'\n';
                 firstWord = true;
                 currentOffset = 0;
             }

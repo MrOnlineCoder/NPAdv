@@ -4,6 +4,7 @@
 #include <State/State.hpp>
 
 #include <Game/Story.hpp>
+#include <Game/DialogueUI.hpp>
 
 class PlayState : public State
 {
@@ -21,14 +22,18 @@ public:
 
 private:
     void checkStatementCompletion();
+    void finishSpeakingOrProgress();
 
     Story m_story;
+    DialogueUI m_dialogueUi;
 
     sf::Music m_bgMusic;
     sf::Sprite m_bg;
     sf::Texture m_blackBgTexture;
 
     sf::Clock m_delayClock;
+    sf::Clock m_smoothClock;
+    sf::Sound m_storySound;
 };
 
 #endif

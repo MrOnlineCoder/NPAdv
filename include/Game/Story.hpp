@@ -11,7 +11,9 @@ enum class StoryDialogueStatementType
     NEXT_DIALOGUE = 3,
     CHOICE = 4,
     END_GAME = 5,
-    DELAY = 6
+    DELAY = 6,
+    TOGGLE_UI = 7,
+    PLAY_SOUND = 8
 };
 
 struct StoryDialogueChoiceItem
@@ -23,13 +25,16 @@ struct StoryDialogueChoiceItem
 
 struct StoryDialogueStatement
 {
-    std::string text;
+    std::wstring text;
     std::string speaker;
     std::string nextDialogueId;
     std::string setBackgroundId;
     std::string setMusicId;
+    std::string soundName;
     std::vector<StoryDialogueChoiceItem> choices;
     float delayTime;
+    bool uiVisibilityFlag;
+    bool smoothTransition;
 
     StoryDialogueStatementType type;
 };

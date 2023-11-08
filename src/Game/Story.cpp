@@ -3,6 +3,9 @@
 #include <fstream>
 #include <Common/Logger.hpp>
 
+#include <locale>
+#include <codecvt>
+
 Story::Story()
 {
     m_dialogues.reserve(64);
@@ -35,6 +38,8 @@ void Story::nextStatement()
 {
     if (!isDialogueFinished())
         m_currentStatementIndex++;
+
+    GetLogger().tag("Story") << "Next statement id " << (int)m_currentStatementIndex << " in dialogue " << m_currentDialogue->id;
 }
 
 bool Story::isDialogueFinished()
@@ -46,6 +51,8 @@ void Story::loadFromFile(const std::string &filename)
 {
     std::ifstream inputFile(filename);
     nlohmann::json js = nlohmann::json::parse(inputFile);
+
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 
     for (auto node : js)
     {
@@ -59,7 +66,9 @@ void Story::loadFromFile(const std::string &filename)
             stmt.speaker = "";
             if (statement.contains("text"))
             {
-                stmt.text = statement["text"];
+                std::string utf8text = statement["text"];
+
+                stmt.text = converter.from_bytes(utf8text);
                 stmt.type = StoryDialogueStatementType::SPEAK;
             }
 
@@ -79,6 +88,11 @@ void Story::loadFromFile(const std::string &filename)
             {
                 stmt.setBackgroundId = statement["set_background"];
                 stmt.type = StoryDialogueStatementType::SET_BACKGROUND;
+
+                if (statement.contains("smooth"))
+                {
+                    stmt.smoothTransition = statement["smooth"];
+                }
             }
 
             if (statement.contains("set_music"))
@@ -91,6 +105,18 @@ void Story::loadFromFile(const std::string &filename)
             {
                 stmt.delayTime = statement["delay"];
                 stmt.type = StoryDialogueStatementType::DELAY;
+            }
+
+            if (statement.contains("play_sound"))
+            {
+                stmt.soundName = statement["play_sound"];
+                stmt.type = StoryDialogueStatementType::PLAY_SOUND;
+            }
+
+            if (statement.contains("toggle_ui"))
+            {
+                stmt.uiVisibilityFlag = statement["toggle_ui"];
+                stmt.type = StoryDialogueStatementType::TOGGLE_UI;
             }
 
             if (statement.contains("choices"))
