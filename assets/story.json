@@ -261,14 +261,6 @@
         "set_background": "tavern_farid"
       },
       {
-        "minigame": "quick_shoot",
-        "win_dialogue_id": "02_bottles_game_win",
-        "lose_dialogue_id": "02_bottles_game_lose"
-      },
-      {
-        "set_background": "tavern_farid"
-      },
-      {
         "toggle_ui": true
       },
       {
@@ -356,13 +348,70 @@
     "dialogue_id": "02_bottles_game_win",
     "statements": [
       {
-        "speaker": "Farid",
-        "text": "вот и хорошо. значит в свое время я уничтожал 10 целей за 10 секунд. если сможешь также или лучше - плов твой, иначе - це кінець"
+        "set_music": "tavern"
       },
       {
-        "minigame": "quick_shoot",
-        "win_dialogue_id": "02_bottles_game_win",
-        "lose_dialogue_id": "02_bottles_game_lose"
+        "set_background": "tavern_farid"
+      },
+      {
+        "speaker": "Farid",
+        "text": "наш слон, шо сказать."
+      },
+      {
+        "speaker": "Farid",
+        "text": "плов твой. садись где свободно"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "tavern_inside",
+        "smooth": true
+      },
+      {
+        "play_sound": "chair"
+      },
+      {
+        "delay": 2
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Нарешті їжа!"
+      },
+      {
+        "text": "Оцінимо цей плов яким гордився бармен"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "eating"
+      },
+      {
+        "delay": 5
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Ну плов дійсно дуже смачний був, ніби реально готувала чурка десь з Сходу"
+      },
+      {
+        "text": "Тим не менше, я нарешті поїв"
+      },
+      {
+        "text": "Що ж буду робити далі?"
+      },
+      {
+        "text": "З цієї 'нампизди' треба якось вибиратись... і по скоріше"
+      },
+      {
+        "text": "Попитаю тих, хто ще в таверні сидить, може в них така ж ситуація як в мене...s"
+      },
+      {
+        "next_dialogue_id": "03_select"
       }
     ]
   },
@@ -378,7 +427,7 @@
       },
       {
         "speaker": "Farid",
-        "text": "прийдеться тебе уйти нахуй"
+        "text": "прийдеться тебе уйти нахуй к сожалению"
       },
       {
         "next_dialogue_id": "ending_02_kicked_out"
@@ -455,6 +504,34 @@
       },
       {
         "end_game": true
+      }
+    ]
+  },
+  {
+    "dialogue_id": "03_select",
+    "statements": [
+      {
+        "text": "До кого б звернутись далі з присутніх?"
+      },
+      {
+        "choices": [
+          {
+            "text": "Таємничий чоловік в чорному костюмі",
+            "next_dialogue_id": "04_torres_01"
+          },
+          {
+            "text": "Старий спокійний чоловік з бородою",
+            "next_dialogue_id": "04_yuriy_01"
+          },
+          {
+            "text": "Балакучий угрюмий чоловік з чаркою",
+            "next_dialogue_id": "04_sviat_01"
+          },
+          {
+            "text": "Гордовита жінка в кутку",
+            "next_dialogue_id": "04_mary_01"
+          }
+        ]
       }
     ]
   }

@@ -22,7 +22,7 @@ void PlayState::onEnter()
     progressStory();
 
     // DEBUG
-    m_story.switchToDialogue("02_barmen");
+    // m_story.switchToDialogue("02_barmen");
 }
 
 void PlayState::onInput(sf::Event ev)

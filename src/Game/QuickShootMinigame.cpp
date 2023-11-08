@@ -4,7 +4,8 @@
 
 const int TARGET_MIN_PADDING = 20;
 const int MAX_TARGETS = 20;
-const int WIN_THRESHOLD = 20;
+const int WIN_THRESHOLD = 1; // change later
+const int INITIAL_SECONDS_LEFT = 15;
 
 QuickShootMinigame::QuickShootMinigame(GameContext &context) : Minigame(context), m_rndDistr(1, MAX_TARGETS)
 {
@@ -120,7 +121,7 @@ void QuickShootMinigame::update(float delta)
 void QuickShootMinigame::start()
 {
     m_finished = false;
-    m_secondsLeft = 15;
+    m_secondsLeft = INITIAL_SECONDS_LEFT;
     m_score = 0;
 
     m_state = QuickShootState::INTRO;
