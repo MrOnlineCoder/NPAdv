@@ -26,7 +26,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    m_story.switchToDialogue("04_mary_04");
+    m_story.switchToDialogue("03_select");
 
     progressStory();
 }

@@ -21,6 +21,9 @@
         "text": "А де це я?"
       },
       {
+        "text": "Я ж здається спав у себе вдома в квартирі в Києві"
+      },
+      {
         "text": "Що зі мною трапилось?"
       },
       {
@@ -265,7 +268,7 @@
       },
       {
         "speaker": "Бармен",
-        "text": "но ты тут по адресу - у нас по первых пиво сделано на очень редкостной и дорогой криворожской воде"
+        "text": "ну ты тут по адресу - у нас во первых пиво сделано на очень редкостной и дорогой криворожской воде"
       },
       {
         "speaker": "Бармен",
@@ -473,7 +476,7 @@
           {
             "text": "Гордовита жінка з книгою",
             "next_dialogue_id": "04_mary",
-            "if": "not mary_refused"
+            "if": "not mary_refused and not mary_saved"
           }
         ]
       }
@@ -1022,11 +1025,6 @@
     "dialogue_id": "04_mary_04",
     "statements": [
       {
-        "minigame": "fight",
-        "win_dialogue_id": "04_mary_game_win",
-        "lose_dialogue_id": "ending_03_sobol_killled"
-      },
-      {
         "text": "Я взагалі наприклад прийшла сюди відпочити від дебіла одного, переслідує мене всюди.",
         "speaker": "Mary"
       },
@@ -1314,7 +1312,7 @@
       },
       {
         "text": "Харе харе постой! Сдаюсь!!!",
-        "spekaer": "Sobol"
+        "speaker": "Sobol"
       },
       {
         "choices": [
@@ -1338,11 +1336,11 @@
       },
       {
         "text": "Бля ну ты конечно мощный чел.",
-        "spekaer": "Sobol"
+        "speaker": "Sobol"
       },
       {
         "text": "Так уж и быть - каждый в жизни должен хоть раз подраться. На этот раз я думаю будет лучше отлучиться...",
-        "spekaer": "Sobol"
+        "speaker": "Sobol"
       },
       {
         "toggle_ui": false
@@ -1356,25 +1354,70 @@
       },
       {
         "text": "Уф... що це було",
-        "spekaer": "Mary"
+        "speaker": "Mary"
       },
       {
         "text": "Непогано файтишся, видно що не дрищ",
-        "spekaer": "Mary"
+        "speaker": "Mary"
       },
       {
         "text": "Проте і дякую, що відпустив його - уж зайвих жертв я б точно не хотіла, яким би він набридливим не був",
-        "spekaer": "Mary"
+        "speaker": "Mary"
       },
       {
         "text": "Я би хотіла відпочити від цих подій поки, тому поки відійду, але пізніше підходь до мене - не хочу пропускати можливість познайомитись поближче",
-        "spekaer": "Mary"
+        "speaker": "Mary"
       },
       {
         "set_variable": "mary_saved"
       },
       {
-        ""
+        "set_variable": "sobol_spared"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_06_02",
+    "statements": [
+      {
+        "play_sound": "punch"
+      },
+      {
+        "text": "* ви наносите удар по голові лежачого Соболя *"
+      },
+      {
+        "text": "Його бездиханне тіло лежить перед вами."
+      },
+      {
+        "set_music": ""
+      },
+      {
+        "text": "...",
+        "speaker": "Mary"
+      },
+      {
+        "text": "Вбивця ти єбаний...",
+        "speaker": "Mary"
+      },
+      {
+        "text": "Він того не був вартий",
+        "speaker": "Mary"
+      },
+      {
+        "text": "Геть від мене, психопат єбучий",
+        "speaker": "Mary"
+      },
+      {
+        "set_variable": "mary_refused"
+      },
+      {
+        "set_variable": "sobol_killed"
+      },
+      {
+        "next_dialogue_id": "03_select"
       }
     ]
   },
@@ -1465,19 +1508,224 @@
         "smooth": false
       },
       {
+        "play_sound": "punch"
+      },
+      {
         "toggle_ui": true
       },
       {
-        "text": "Соболь наніс вам фатальний удар в голову"
+        "text": "Соболь наніс вам фатальний удар в голову, роздробивши череп..."
       },
       {
         "play_sound": "bad_ending"
       },
       {
-        "text": "Ви зтекли кров'ю і померли. Історія закінчена"
+        "text": "Стався крововилив у мозок і ви загинули. Історія закінчена"
       },
       {
         "end_game": true
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_01",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "set_music": "guess"
+      },
+      {
+        "delay": 3
+      },
+      {
+        "set_background": "tavern_sviat",
+        "smooth": true
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Вітаю тебе, не бажаєш випити?",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "choices": [
+          {
+            "text": "Залюбки",
+            "next_dialogue_id": "04_sviat_02_01"
+          },
+          {
+            "text": "Ні, дякую",
+            "next_dialogue_id": "04_sviat_02_02"
+          },
+          {
+            "text": "Ви ж навіть не представились, а вже бажаєте випити...",
+            "next_dialogue_id": "04_sviat_02_03"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_02_01",
+    "statements": [
+      {
+        "text": "Залюбки"
+      },
+      {
+        "text": "Базу кажеш",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "next_dialogue_id": "04_sviat_03"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_02_02",
+    "statements": [
+      {
+        "text": "Ні, дякую"
+      },
+      {
+        "text": "Шкода. Повертайся тоді як захочеш",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_02_03",
+    "statements": [
+      {
+        "text": "Ви ж навіть не представились, а вже бажаєте випити..."
+      },
+      {
+        "text": "Саме так, оскільки не випивши з людиною - довіряти їй не можна.",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "text": "Тому ти сідай, я наллю, і так поговоримо.",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "next_dialogue_id": "04_sviat_03"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_03",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "beer"
+      },
+      {
+        "delay": 6
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Згадалась приказка...",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "text": "Той хто розділяє з тобою ложу - або жінка, або шлюха",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "text": "А той хто розділяє з тобою бокал пива - або друг, або товариш",
+        "speaker": "Чоловік з чаркою"
+      },
+      {
+        "text": "Як подобає товаришам, представлюсь - звуся Святославом.",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "swallow"
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Ти можеш подумати, що я відбитий пʼяниця і тільки те і роблю, що просераю час тут",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Але це не так!",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "swallow"
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Справа в тому, що після довгих роздумів і аналізу",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Я зрозумів, що все тщетно",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Нічого не змінити, і не повернути",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "І змирився з фактом безсенсового існування",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Я це називаю теорію блекпіла",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Ти її приймаєш один раз і більше ні про що не думаєш",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Гроші, карʼєра, дівчата, емоції, соціум, політика - це все пиль",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "І вічний лише сам блекпіл.",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Замудро можливо, але це так і є",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Те що я правий, я переконувався вже дуже багато разів",
+        "speaker": "Sviatoslav"
       }
     ]
   }
