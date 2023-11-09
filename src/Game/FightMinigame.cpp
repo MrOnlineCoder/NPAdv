@@ -267,7 +267,7 @@ void FightMinigame::update(float delta)
                 if (m_gameClock.getElapsedTime().asSeconds() > 1.5f)
                 {
                     int roll = m_rndDistr(m_rndGen);
-                    if (roll > 50 || m_enemyHp <= 1)
+                    if (roll > 50 || m_enemyHp <= 1 || m_playerHp <= 1)
                     {
                         m_enemyAction = FightAction::ATTACK;
                         writeToCombatLog(L"Соболь атакує!");
@@ -340,6 +340,7 @@ void FightMinigame::update(float delta)
                     if (m_enemyHp <= 0 || m_playerHp <= 0)
                     {
                         m_finished = true;
+                        m_music.stop();
                     }
 
                     m_turnState = TurnState::ACTION_COMPARE;
@@ -488,6 +489,8 @@ void FightMinigame::resolveTurn()
 
         m_targetAction = FightAction::DEFEND;
         m_turnState = TurnState::ACTION_EXECUTION;
+        prepareActionBar();
+        return;
     }
 
     if (m_enemyAction == FightAction::DEFEND && m_playerAction == FightAction::ATTACK)
