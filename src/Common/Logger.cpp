@@ -44,6 +44,7 @@ Logger &Logger::tag(const std::string &tag)
     }
 
     m_file.flush();
+    std::cout.flush();
 
     m_mutex.unlock();
 

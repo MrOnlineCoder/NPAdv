@@ -1,6 +1,7 @@
 #include <State/PlayState.hpp>
 
 #include <Game/QuickShootMinigame.hpp>
+#include <Game/FightMinigame.hpp>
 
 PlayState::PlayState(GameContext *_gameCtx)
     : State(_gameCtx), m_dialogueUi(*_gameCtx)
@@ -25,7 +26,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    m_story.switchToDialogue("02_bottles_game_win");
+    m_story.switchToDialogue("04_mary_04");
 
     progressStory();
 }
@@ -200,12 +201,18 @@ void PlayState::progressStory()
     }
     else if (stmt.type == StoryDialogueStatementType::MINIGAME)
     {
+        m_bgMusic.stop();
         if (stmt.minigame == "quick_shoot")
         {
-            m_bgMusic.stop();
             m_minigame = new QuickShootMinigame(m_gameContext);
-            m_minigame->start();
         }
+
+        if (stmt.minigame == "fight")
+        {
+            m_minigame = new FightMinigame(m_gameContext);
+        }
+
+        m_minigame->start();
     }
     else if (stmt.type == StoryDialogueStatementType::SET_VARIABLE)
     {

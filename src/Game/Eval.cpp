@@ -4,6 +4,7 @@
 
 Eval::Eval()
 {
+    m_luaState = nullptr;
     reset();
 }
 
@@ -38,8 +39,8 @@ void Eval::reset()
     if (m_luaState)
     {
         lua_close(m_luaState);
-        delete m_luaState;
     }
 
     m_luaState = luaL_newstate();
+    GetLogger().tag("Eval") << "Created Lua VM";
 }

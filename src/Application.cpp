@@ -26,9 +26,9 @@ void Application::loadAssets()
     m_gameContext.assetManager->loadFont("main", "fonts/OpenSans.ttf");
     m_gameContext.assetManager->loadFont("epic", "fonts/Volja.ttf");
 
-    // Background
+    // Backgrounds, textures, icons
     m_gameContext.assetManager->loadAllTexturesInFolder("backgrounds");
-
+    m_gameContext.assetManager->loadAllTexturesInFolder("images");
     m_gameContext.assetManager->loadAllTexturesInFolder("targets");
 
     // Sounds
