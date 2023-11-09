@@ -1273,7 +1273,108 @@
       {
         "minigame": "fight",
         "win_dialogue_id": "04_mary_game_win",
-        "lose_dialogue_id": "04_mary_game_lose"
+        "lose_dialogue_id": "ending_03_sobol_killled"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_game_win",
+    "statements": [
+      {
+        "set_music": "not_as"
+      },
+      {
+        "set_background": "tavern_sobol_defeated",
+        "smooth": true
+      },
+
+      {
+        "text": "Після тривалого обміну серіями ударів під мовчазне спостерігання оточуючих..."
+      },
+      {
+        "text": "Соболь, ледве дихаючи, впав на землю"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "body_collapse"
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "На межі своїх сил, ви замахуєтесь і цілитесь йому прямо в голову"
+      },
+      {
+        "text": "Концетруючи всі свої сили в один удар, ви відчуваєте - цей удар точно добʼє його, і йому не увернутись"
+      },
+      {
+        "text": "Харе харе постой! Сдаюсь!!!",
+        "spekaer": "Sobol"
+      },
+      {
+        "choices": [
+          {
+            "text": "Зупинити замах і пощадити його",
+            "next_dialogue_id": "04_mary_06_01"
+          },
+          {
+            "text": "Добити його",
+            "next_dialogue_id": "04_mary_06_02"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_mary_06_01",
+    "statements": [
+      {
+        "text": "* ви опускаєте руку і даєте Соболю встати *"
+      },
+      {
+        "text": "Бля ну ты конечно мощный чел.",
+        "spekaer": "Sobol"
+      },
+      {
+        "text": "Так уж и быть - каждый в жизни должен хоть раз подраться. На этот раз я думаю будет лучше отлучиться...",
+        "spekaer": "Sobol"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "tavern_mary",
+        "smooth": true
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Уф... що це було",
+        "spekaer": "Mary"
+      },
+      {
+        "text": "Непогано файтишся, видно що не дрищ",
+        "spekaer": "Mary"
+      },
+      {
+        "text": "Проте і дякую, що відпустив його - уж зайвих жертв я б точно не хотіла, яким би він набридливим не був",
+        "spekaer": "Mary"
+      },
+      {
+        "text": "Я би хотіла відпочити від цих подій поки, тому поки відійду, але пізніше підходь до мене - не хочу пропускати можливість познайомитись поближче",
+        "spekaer": "Mary"
+      },
+      {
+        "set_variable": "mary_saved"
+      },
+      {
+        ""
       }
     ]
   },
