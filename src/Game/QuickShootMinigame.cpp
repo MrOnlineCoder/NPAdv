@@ -53,6 +53,13 @@ QuickShootMinigame::QuickShootMinigame(GameContext &context) : Minigame(context)
 
     m_crosshair.setTexture(
         m_context.assetManager->getTexture("crosshair"));
+
+    m_crosshair.setOrigin(
+        sf::Vector2f(
+            m_crosshair.getLocalBounds().width / 2,
+            m_crosshair.getLocalBounds().height / 2)
+
+    );
 }
 
 void QuickShootMinigame::render()
