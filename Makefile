@@ -62,7 +62,7 @@ obj/MathUtils.o: src/Common/MathUtils.cpp include/Common/MathUtils.hpp
 obj/IntroState.o: src/State/IntroState.cpp include/State/IntroState.hpp
 	${CPP} $(CFLAGS) -o obj/IntroState.o -c src/State/IntroState.cpp
 
-obj/PlayState.o: src/State/PlayState.cpp include/State/PlayState.hpp
+obj/PlayState.o: src/State/PlayState.cpp include/State/PlayState.hpp include/Game/BattleshipsMinigame.hpp include/Game/QuickShootMinigame.hpp
 	${CPP} $(CFLAGS) -o obj/PlayState.o -c src/State/PlayState.cpp
 
 obj/Story.o: src/Game/Story.cpp include/Game/Story.hpp

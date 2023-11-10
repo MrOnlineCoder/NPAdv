@@ -1,6 +1,11 @@
 #include <Game/BattleshipsMinigame.hpp>
 #include <Common/Logger.hpp>
 
+const int BATTLESHIP_CELL_SIZE = 64;
+const int BATTLESHIP_BOARD_RENDER_SIZE = BATTLESHIP_BOARD_SIZE * BATTLESHIP_CELL_SIZE;
+const int BATTLESHIP_BOARDS_MARGIN = 64;
+;
+
 BattleshipsMinigame::BattleshipsMinigame(GameContext &context) : Minigame(context)
 {
     m_bg.setTexture(m_context.assetManager->getTexture("minigame_ships"));
@@ -14,11 +19,75 @@ BattleshipsMinigame::BattleshipsMinigame(GameContext &context) : Minigame(contex
     m_music.setLoop(true);
 
     m_rndGen.seed(m_rndDevice());
+
+    m_gridHorizontalLine.setFillColor(sf::Color::White);
+    m_gridVerticalLine.setFillColor(sf::Color::White);
+
+    m_gridHorizontalLine.setSize(
+        sf::Vector2f(
+            BATTLESHIP_BOARD_RENDER_SIZE,
+            1));
+
+    m_gridVerticalLine.setSize(
+        sf::Vector2f(
+            1,
+            BATTLESHIP_BOARD_RENDER_SIZE));
+
+    m_boardBackground.setFillColor(
+        sf::Color(63, 81, 106, 100));
+    m_boardBackground.setSize(
+        sf::Vector2f(BATTLESHIP_BOARD_RENDER_SIZE, BATTLESHIP_BOARD_RENDER_SIZE));
+
+    m_turnText.setFont(
+        m_context.assetManager->getFont("main"));
+
+    m_turnText.setCharacterSize(32);
+    m_turnText.setFillColor(sf::Color::White);
+
+    m_hoverTile.setSize(
+        sf::Vector2f(BATTLESHIP_CELL_SIZE, BATTLESHIP_CELL_SIZE));
+    m_hoverTile.setFillColor(
+        sf::Color(255, 255, 255, 100));
 }
 
 void BattleshipsMinigame::render()
 {
     m_context.window.draw(m_bg);
+
+    sf::Vector2f enemyBoardStartPosition = sf::Vector2f(
+        m_context.window.getSize().x / 2 + BATTLESHIP_BOARDS_MARGIN,
+        m_context.window.getSize().y / 2 - BATTLESHIP_BOARD_RENDER_SIZE / 2);
+
+    renderBoard(
+        m_playerBoard,
+        sf::Vector2f(
+            m_context.window.getSize().x / 2 - BATTLESHIP_BOARD_RENDER_SIZE - BATTLESHIP_BOARDS_MARGIN,
+            m_context.window.getSize().y / 2 - BATTLESHIP_BOARD_RENDER_SIZE / 2),
+        false);
+
+    renderBoard(
+        m_enemyBoard,
+        enemyBoardStartPosition,
+        true);
+
+    m_context.window.draw(m_turnText);
+
+    sf::Vector2f mousePos = m_context.window.mapPixelToCoords(sf::Mouse::getPosition(m_context.window));
+
+    if (m_isPlayerTurn && m_turnState == BattleshipTurnState::THINKING && mousePos.x > enemyBoardStartPosition.x &&
+        mousePos.x < enemyBoardStartPosition.x + BATTLESHIP_BOARD_RENDER_SIZE &&
+        mousePos.y > enemyBoardStartPosition.y &&
+        mousePos.y < enemyBoardStartPosition.y + BATTLESHIP_BOARD_RENDER_SIZE)
+    {
+        int x = (mousePos.x - enemyBoardStartPosition.x) / BATTLESHIP_CELL_SIZE;
+        int y = (mousePos.y - enemyBoardStartPosition.y) / BATTLESHIP_CELL_SIZE;
+
+        m_hoverTile.setPosition(
+            enemyBoardStartPosition.x + x * BATTLESHIP_CELL_SIZE,
+            enemyBoardStartPosition.y + y * BATTLESHIP_CELL_SIZE);
+
+        m_context.window.draw(m_hoverTile);
+    }
 }
 
 void BattleshipsMinigame::update(float delta)
@@ -35,10 +104,14 @@ void BattleshipsMinigame::start()
     {
         for (int j = 0; j < BATTLESHIP_BOARD_SIZE; j++)
         {
-            printf("%d ", m_playerBoard[i][j]);
+            printf("%d ", m_enemyBoard[i][j]);
         }
         printf("\n");
     }
+
+    m_turnState = BattleshipTurnState::THINKING;
+    m_isPlayerTurn = true;
+    setTurnStatusText(L"Ваш хід! Оберіть координати для пострілу");
 }
 
 void BattleshipsMinigame::input(sf::Event &ev)
@@ -197,4 +270,37 @@ void BattleshipsMinigame::addShip(int size, BattleshipBoard &board)
     }
 
     GetLogger().tag("Battleships") << "Added ship of size " << size << " in " << n << " random attempts.";
+}
+
+bool BattleshipsMinigame::shoot(BattleshipBoard &board, int x, int y)
+{
+}
+
+void BattleshipsMinigame::renderBoard(BattleshipBoard &board, sf::Vector2f startPos, bool hideShips)
+{
+    m_boardBackground.setPosition(startPos);
+    m_context.window.draw(m_boardBackground);
+
+    for (int i = 0; i < BATTLESHIP_BOARD_SIZE + 1; i++)
+    {
+        m_gridHorizontalLine.setPosition(
+            startPos.x,
+            startPos.y + i * BATTLESHIP_CELL_SIZE);
+
+        m_gridVerticalLine.setPosition(
+            startPos.x + i * BATTLESHIP_CELL_SIZE,
+            startPos.y);
+
+        m_context.window.draw(m_gridHorizontalLine);
+        m_context.window.draw(m_gridVerticalLine);
+    }
+}
+
+void BattleshipsMinigame::setTurnStatusText(std::wstring str)
+{
+    m_turnText.setString(str);
+    m_turnText.setPosition(
+        sf::Vector2f(
+            m_context.window.getSize().x / 2 - m_turnText.getLocalBounds().width / 2,
+            m_context.window.getSize().y - m_turnText.getLocalBounds().height / 2 - 128));
 }
