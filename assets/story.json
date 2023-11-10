@@ -1726,6 +1726,148 @@
       {
         "text": "Те що я правий, я переконувався вже дуже багато разів",
         "speaker": "Sviatoslav"
+      },
+      {
+        "choices": [
+          {
+            "text": "Ну дійсно щось є в тому, що ти говориш",
+            "next_dialogue_id": "04_sviat_04_01"
+          },
+          {
+            "text": "Ти шизоїд якийсь, так ще й пʼяниця",
+            "next_dialogue_id": "04_sviat_04_02"
+          },
+          {
+            "text": "Мені здається ти просто сховався від реальності і всіх проблем",
+            "next_dialogue_id": "04_sviat_04_03"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_offer",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "swallow"
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Давай тоді може розважимось трохи?",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Я обожнюю грати в Морський бій. І щоб було цікавіше, зробимо ставки",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Якщо виграєш - віддам тобі символічно сам блекпіл, найцінніше що в мене є з філософської точки зору",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Програєш - заплатиш за випивку за обох нас",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Думаю справедливо, враховуючи мою неперможність",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Ну що, партейку?",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "choices": [
+          {
+            "text": "Давай",
+            "next_dialogue_id": "04_sviat_start_game"
+          },
+          {
+            "text": "Ні, не хочу",
+            "next_dialogue_id": "04_sviat_05_02"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_04_01",
+    "statements": [
+      {
+        "text": "Ну дійсно щось є в тому, що ти говориш"
+      },
+      {
+        "text": "Я знав, що ти поймеш.",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Черговий раз переконуюсь що і в людях розбираюсь",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "next_dialogue_id": "04_sviat_offer"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_04_02",
+    "statements": [
+      {
+        "text": "Хаха. ну ти не перший хто таке говорить"
+      },
+      {
+        "text": "Черговий доказ, що всі занадто зашорені, щоб усвідомити те ж, що і я.",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Бідні люди...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "next_dialogue_id": "04_sviat_offer"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_04_03",
+    "statements": [
+      {
+        "text": "В якійсь мірі може і так"
+      },
+      {
+        "text": "Але повторю, блекпіл підхід - найкращий з усіх, що я пробував.",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "А пробував я дуже багато чого...s",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "next_dialogue_id": "04_sviat_offer"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_start_game",
+    "statements": [
+      {
+        "text": "Давай"
+      },
+      {
+        "set_music": ""
+      },
+      {
+        "minigame": "ships",
+        "win_dialogue_id": "04_sviat_win",
+        "lose_dialogue_id": "04_sviat_lose"
       }
     ]
   }
