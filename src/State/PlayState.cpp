@@ -2,6 +2,7 @@
 
 #include <Game/QuickShootMinigame.hpp>
 #include <Game/FightMinigame.hpp>
+#include <Game/BattleshipsMinigame.hpp>
 
 PlayState::PlayState(GameContext *_gameCtx)
     : State(_gameCtx), m_dialogueUi(*_gameCtx)
@@ -26,7 +27,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    m_story.switchToDialogue("03_select");
+    m_story.switchToDialogue("04_sviat_offer");
 
     progressStory();
 }
@@ -210,6 +211,11 @@ void PlayState::progressStory()
         if (stmt.minigame == "fight")
         {
             m_minigame = new FightMinigame(m_gameContext);
+        }
+
+        if (stmt.minigame == "battleship")
+        {
+            m_minigame = new BattleshipsMinigame(m_gameContext);
         }
 
         m_minigame->start();

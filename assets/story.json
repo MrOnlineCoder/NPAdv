@@ -1865,7 +1865,7 @@
         "set_music": ""
       },
       {
-        "minigame": "ships",
+        "minigame": "battleship",
         "win_dialogue_id": "04_sviat_win",
         "lose_dialogue_id": "04_sviat_lose"
       }
