@@ -471,7 +471,8 @@
           },
           {
             "text": "Балакучий угрюмий чоловік з чаркою",
-            "next_dialogue_id": "04_sviat_01"
+            "next_dialogue_id": "04_sviat_01",
+            "if": "not sviat_defeated and not sviat_won"
           },
           {
             "text": "Гордовита жінка з книгою",
@@ -1868,6 +1869,97 @@
         "minigame": "battleship",
         "win_dialogue_id": "04_sviat_win",
         "lose_dialogue_id": "04_sviat_lose"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_win",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_music": "guess"
+      },
+      {
+        "set_background": "tavern_sviat_defeated",
+        "smooth": true
+      },
+      {
+        "set_variable": "sviat_defeated"
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Не може бути...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Човен мій то живий точно...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Як би у тебе був флот - його вже не було...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "text": "Маючи зруйнований свій внутрішній світ, Святослав втікає з місця подій..."
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_sviat_lose",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_music": "guess"
+      },
+      {
+        "set_background": "tavern_sviat"
+      },
+      {
+        "set_variable": "sviat_won"
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Хех",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Хоч це і було легко, але дякую за гру",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Партія доказала, що був, є і буду правим",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Ухх, аж ще одну склянку захотілось від щастя...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "set_music": "tavern"
+      },
+      {
+        "next_dialogue_id": "03_select"
       }
     ]
   }
