@@ -29,6 +29,7 @@ OBJ_FILES=obj/Main.o obj/Application.o\
 	obj/Eval.o\
 	obj/FightMinigame.o\
 	obj/BattleshipsMinigame.o\
+	obj/CreditsState.o\
 
 OUT=npadv
 
@@ -82,6 +83,9 @@ obj/FightMinigame.o: src/Game/FightMinigame.cpp include/Game/FightMinigame.hpp i
 
 obj/BattleshipsMinigame.o: src/Game/BattleshipsMinigame.cpp include/Game/BattleshipsMinigame.hpp include/Game/Minigame.hpp
 	${CPP} $(CFLAGS) -o obj/BattleshipsMinigame.o -c src/Game/BattleshipsMinigame.cpp
+
+obj/CreditsState.o: src/State/CreditsState.cpp include/State/CreditsState.hpp
+	${CPP} $(CFLAGS) -o obj/CreditsState.o -c src/State/CreditsState.cpp
 
 mkdir:
 	mkdir -p obj/

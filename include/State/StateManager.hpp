@@ -9,7 +9,8 @@ enum class StateType
 {
     INTRO = 0,
     MENU = 1,
-    GAME = 2
+    GAME = 2,
+    CREDITS = 3
 };
 
 class State;

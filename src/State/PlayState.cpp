@@ -27,7 +27,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    // m_story.switchToDialogue("04_sviat_offer");
+    // m_story.switchToDialogue("05_finale");
 
     progressStory();
 }
@@ -192,7 +192,7 @@ void PlayState::progressStory()
     else if (stmt.type == StoryDialogueStatementType::END_GAME)
     {
         m_bgMusic.stop();
-        m_gameContext.stateManager->changeState(StateType::MENU);
+        m_gameContext.stateManager->changeState(StateType::CREDITS);
     }
     else if (stmt.type == StoryDialogueStatementType::NEXT_DIALOGUE)
     {

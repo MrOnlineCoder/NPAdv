@@ -466,13 +466,13 @@
             "next_dialogue_id": "04_torres_01"
           },
           {
-            "text": "Старий спокійний чоловік з бородою",
-            "next_dialogue_id": "04_yuriy_01"
+            "text": "Тихий старий чоловік з бородою",
+            "next_dialogue_id": "04_yuriy"
           },
           {
             "text": "Балакучий угрюмий чоловік з чаркою",
             "next_dialogue_id": "04_sviat_01",
-            "if": "not sviat_defeated and not sviat_won"
+            "if": "not sviat_met"
           },
           {
             "text": "Гордовита жінка з книгою",
@@ -672,6 +672,9 @@
         "set_variable": "torres_denied"
       },
       {
+        "set_variable": "torres_met"
+      },
+      {
         "next_dialogue_id": "03_select"
       }
     ]
@@ -778,6 +781,9 @@
         "set_variable": "torres_passed"
       },
       {
+        "set_variable": "torres_met"
+      },
+      {
         "next_dialogue_id": "03_select"
       }
     ]
@@ -873,6 +879,9 @@
         "set_variable": "mary_refused"
       },
       {
+        "set_variable": "mary_met"
+      },
+      {
         "toggle_ui": false
       },
       {
@@ -902,6 +911,9 @@
       },
       {
         "set_variable": "mary_refused"
+      },
+      {
+        "set_variable": "mary_met"
       },
       {
         "next_dialogue_id": "03_select"
@@ -1373,6 +1385,9 @@
         "set_variable": "mary_saved"
       },
       {
+        "set_variable": "mary_met"
+      },
+      {
         "set_variable": "sobol_spared"
       },
       {
@@ -1416,6 +1431,9 @@
       },
       {
         "set_variable": "sobol_killed"
+      },
+      {
+        "set_variable": "mary_met"
       },
       {
         "next_dialogue_id": "03_select"
@@ -1793,7 +1811,7 @@
           },
           {
             "text": "Ні, не хочу",
-            "next_dialogue_id": "04_sviat_05_02"
+            "next_dialogue_id": "04_sviat_05_denied"
           }
         ]
       }
@@ -1819,10 +1837,61 @@
     ]
   },
   {
+    "dialogue_id": "04_sviat_05_denied",
+    "statements": [
+      {
+        "text": "Ехх...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Вот як розказуєш їм своє світобачення",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Вони його не приймають",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Але і на ділі довести не хочуть нічого - сливаються",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Ну нічого, човники тоді мої живі будуть",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "text": "Піду замовлю щось більш потужне у бармена...",
+        "speaker": "Sviatoslav"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "delay": 1
+      },
+      {
+        "set_music": "tavern"
+      },
+      {
+        "set_variable": "sviat_met"
+      },
+      {
+        "set_variable": "sviat_denied"
+      },
+      {
+        "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
     "dialogue_id": "04_sviat_04_02",
     "statements": [
       {
-        "text": "Хаха. ну ти не перший хто таке говорить"
+        "text": "Хаха. ну ти не перший хто таке говорить",
+        "speaker": "Sviatoslav"
       },
       {
         "text": "Черговий доказ, що всі занадто зашорені, щоб усвідомити те ж, що і я.",
@@ -1890,6 +1959,9 @@
         "set_variable": "sviat_defeated"
       },
       {
+        "set_variable": "sviat_met"
+      },
+      {
         "toggle_ui": true
       },
       {
@@ -1931,6 +2003,9 @@
         "set_variable": "sviat_won"
       },
       {
+        "set_variable": "sviat_met"
+      },
+      {
         "toggle_ui": true
       },
       {
@@ -1961,6 +2036,357 @@
       },
       {
         "next_dialogue_id": "03_select"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "04_yuriy",
+    "statements": [
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "play_sound": "steps"
+      },
+      {
+        "set_music": "covert"
+      },
+      {
+        "delay": 3
+      },
+      {
+        "set_background": "tavern_yuriy",
+        "smooth": true
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Друже, зараз дуже шумно тут і багато людей, підходь пізніше, а то я старий нічого чути не буду",
+        "speaker": "Старий з бородою",
+        "if": "not torres_met or not mary_met or not sviat_met"
+      },
+      {
+        "next_dialogue_id": "03_select",
+        "if": "not torres_met or not mary_met or not sviat_met"
+      },
+      {
+        "text": "Вітаю тебе, сідай",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Що повідаєш цікавого старому?",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Я до сих пір звичайно не розумію чому тут всі так спокійно розповідають одне одному про свої історії"
+      },
+      {
+        "text": "Враховуючи, що це місце десь на краю світу і сюди потрапляють невідомо як"
+      },
+      {
+        "text": "Тому історія в мене проста і коротка - жив поживав, раптово опинився тут, і намагаюсь повернутись якось"
+      },
+      {
+        "text": "Зрозуміло...",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Я теж за рідним домом в Одесі сумую",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Але тут насправді вже не так й погано - атмосфера, яка б не була, чомусь дозволяє подумати про багато речей",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Вічних і короткотривалих",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Важливих і безмістовних",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Ну словом, всяких",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 2
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "А зачекай, я згадав же",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Ти ж повернутись хочеш?",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Саме так"
+      },
+      {
+        "text": "Так це ж легко",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Що? А як? Я вже майже всіх попитав - а вони всі на своїй хвилі, скажімо так..."
+      },
+      {
+        "text": "Щоб з кінцями покинути це місце - достатьно лягти за столом і заснути",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "А прокинешся вже... Десь інде",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Ммммм"
+      },
+      {
+        "text": "Так просто?"
+      },
+      {
+        "text": "Десь є подвох якийсь?"
+      },
+      {
+        "text": "Та ні, я правду кажу",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Спробуй",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "text": "Що ж..."
+      },
+      {
+        "text": "Не буду гаяти часу."
+      },
+      {
+        "text": "Дякую вам, можливо ще побачимось."
+      },
+      {
+        "text": "Ага, будь-здоров.",
+        "speaker": "Старий з бородою"
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "text": "* Ви кладете голову на руки і засинаєте *"
+      },
+      {
+        "set_music": ""
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 2
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Невже це спрацює?"
+      },
+      {
+        "text": "І всі ці незрозумілі події будуть дійсно як страшний сон в минулому?"
+      },
+      {
+        "text": "..."
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 2
+      },
+      {
+        "next_dialogue_id": "05_finale"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "05_finale",
+    "statements": [
+      {
+        "set_music": "man_down"
+      },
+      {
+        "set_background": "finale",
+        "smooth": true
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Ранок..."
+      },
+      {
+        "text": "Шум міста..."
+      },
+      {
+        "text": "Знайомі стіни, ліжко і стеля..."
+      },
+      {
+        "text": "Це моя квартира!"
+      },
+      {
+        "text": "Я дійсно повернувся!"
+      },
+      {
+        "text": "Так"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 1
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Треба зупинитись і перевірити чи це не черговий трюк реальності"
+      },
+      {
+        "text": "Відкрию новини на телефоні і перевірю що зараз відбувається в світі"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 1.5
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "next_dialogue_id": "ending_04_good",
+        "if": "torres_passed and sviat_defeated and mary_saved"
+      },
+      {
+        "next_dialogue_id": "ending_04_neutral"
+      }
+    ]
+  },
+  {
+    "dialogue_id": "ending_04_neutral",
+    "statements": [
+      {
+        "text": "Йшов 627 день вторгення росії в Україну..."
+      },
+      {
+        "text": "Точаться бої під Авдіївкою і на лівому березі Херсонщини..."
+      },
+      {
+        "text": "Здається нічого не змінилось - я повернувся в той же час.."
+      },
+      {
+        "text": "А хоча ні! Пишуть тут, що Чорноморський флот РФ вже більше тижня не виходить у море - більшість їх кораблів знищено!",
+        "if": "sviat_defeated"
+      },
+      {
+        "text": "Невже наша гра з тим чоловіком в морський бій якось на це повпливала?",
+        "if": "sviat_defeated"
+      },
+      {
+        "text": "Що ж зі мною було..."
+      },
+      {
+        "text": "Напевно це загадка з якою прийдеться доживати залишок життя"
+      },
+      {
+        "text": "Піду прогуляюсь..."
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "delay": 2
+      },
+      {
+        "end_game": true
+      }
+    ]
+  },
+  {
+    "dialogue_id": "ending_04_good",
+    "statements": [
+      {
+        "text": "Гляну чи триває все ще війна"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "delay": 1.5
+      },
+      {
+        "toggle_ui": true
+      },
+      {
+        "text": "Не зрозумів..."
+      },
+      {
+        "text": "Генштаб вже більше тижня не публікує втрати росіян..."
+      },
+      {
+        "text": "Треба перевірити мапу тоді..."
+      },
+      {
+        "text": "..."
+      },
+      {
+        "text": "Не може бути..."
+      },
+      {
+        "text": "На мапі жодного червної крапки або лінії - всі території під нашим контролем"
+      },
+      {
+        "text": "І біля моря всюди натикані значки потоплених кораблів Чорноморського флоту РФ..."
+      },
+      {
+        "text": "Але ж..."
+      },
+      {
+        "text": "Це було неможливо при наших ресурсах, кадрах і політичних реаліях..."
+      },
+      {
+        "text": "Чи мої дії в таверні якось повпливали на це?"
+      },
+      {
+        "text": "Нитік, Пʼяниця і Пиздуниця... вони ж..."
+      },
+      {
+        "text": "Та ні, дурня якась. Піду вмиюсь і запитаю у знайомих, що відбулося"
+      },
+      {
+        "toggle_ui": false
+      },
+      {
+        "set_background": "",
+        "smooth": true
+      },
+      {
+        "end_game": true
       }
     ]
   }

@@ -4,6 +4,7 @@
 #include <Common/FilesystemUtils.hpp>
 #include <State/IntroState.hpp>
 #include <State/PlayState.hpp>
+#include <State/CreditsState.hpp>
 
 Application::Application(ApplicationLaunchOptions options)
 {
@@ -47,6 +48,9 @@ void Application::loadStates()
 
     PlayState *playState = new PlayState(&m_gameContext);
     m_gameContext.stateManager->addState(playState);
+
+    CreditsState *creditsState = new CreditsState(&m_gameContext);
+    m_gameContext.stateManager->addState(creditsState);
 
     introState->onEnter();
 }

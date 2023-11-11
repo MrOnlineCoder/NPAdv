@@ -7,7 +7,7 @@ MenuState::MenuState(GameContext *_gameCtx)
         m_gameContext.assetManager->getFont("epic"));
 
     m_titleText.setCharacterSize(36);
-    m_titleText.setString("Nam Pizda: The Adventure");
+    m_titleText.setString("Nam Pizda Tavern");
 
     m_titleText.setPosition(
         m_gameContext.window.getSize().x / 2 - m_titleText.getGlobalBounds().width / 2,
@@ -23,7 +23,7 @@ MenuState::MenuState(GameContext *_gameCtx)
     m_playText.setFillColor(
         sf::Color::White);
 
-    m_playText.setString(L"Натисніть будь-яку клавішу, щоб почати гру");
+    m_playText.setString(L"Натисніть будь-яку клавішу, щоб почати гру або Escape, щоб вийти");
 
     m_playText.setPosition(
         m_gameContext.window.getSize().x / 2 - m_playText.getGlobalBounds().width / 2,
