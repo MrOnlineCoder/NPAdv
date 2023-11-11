@@ -399,25 +399,31 @@ void BattleshipsMinigame::addShip(int size, BattleshipBoard &board)
 
     std::shuffle(possiblePositions.begin(), possiblePositions.end(), m_rndGen);
 
+    int lastDir = 0;
+
     while (!possiblePositions.empty())
     {
         auto pos = possiblePositions.back();
         possiblePositions.pop_back();
 
-        if (tryAddingShipAtPosition(
-                board,
-                size,
-                pos.x,
-                pos.y,
-                0))
-            break;
+        int ndir = dirDistr(m_rndGen);
 
         if (tryAddingShipAtPosition(
                 board,
                 size,
                 pos.x,
                 pos.y,
-                1))
+                ndir ? 0 : 1))
+        {
+            break;
+        }
+
+        if (tryAddingShipAtPosition(
+                board,
+                size,
+                pos.x,
+                pos.y,
+                ndir ? 1 : 0))
             break;
 
         n++;
@@ -686,11 +692,16 @@ void BattleshipsMinigame::executeEnemyTurn()
         int gx = m_lastEnemyHitPosition.x;
         int gy = m_lastEnemyHitPosition.y;
 
-        sf::Vector2i possibleTargets[4] = {
+        std::vector<sf::Vector2i> possibleTargets = {
             sf::Vector2i(gx + 1, gy),
             sf::Vector2i(gx - 1, gy),
             sf::Vector2i(gx, gy + 1),
             sf::Vector2i(gx, gy - 1)};
+
+        std::shuffle(
+            possibleTargets.begin(),
+            possibleTargets.end(),
+            m_rndGen);
 
         for (int i = 0; i < 4; i++)
         {

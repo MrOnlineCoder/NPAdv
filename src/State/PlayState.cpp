@@ -27,7 +27,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    m_story.switchToDialogue("04_sviat_offer");
+    // m_story.switchToDialogue("04_sviat_offer");
 
     progressStory();
 }
