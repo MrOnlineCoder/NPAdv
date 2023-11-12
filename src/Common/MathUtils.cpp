@@ -1,5 +1,8 @@
 #include <Common/MathUtils.hpp>
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 namespace MathUtils
 {
     sf::Vector2f lerp(sf::Vector2f a, sf::Vector2f b, float f)
@@ -29,6 +32,6 @@ namespace MathUtils
 
     float radiansToDegrees(float radians)
     {
-        return radians * 180.0 / M_PI;
+        return radians * 180.0 / 3.14159265358979323846;
     }
 }

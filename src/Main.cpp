@@ -2,8 +2,11 @@
 
 #include <Common/Logger.hpp>
 
+#include <Windows.h>
+
 int main(int argc, char *argv[])
 {
+    FreeConsole();
     GetLogger().init();
 
     std::srand(std::time(nullptr));

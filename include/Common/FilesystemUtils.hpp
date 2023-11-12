@@ -4,31 +4,31 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <windows.h>
 
 namespace FilesystemUtils
 {
 #ifdef _WIN32
-#include <windows.h>
-    static std::vector<std::string> files_in_directory(std::string path)
+    static std::vector<std::string> listFilesInDirectory(std::string path)
     {
         std::vector<std::string> files;
 
         // check directory exists
         char fullpath[MAX_PATH];
-        GetFullPathName(path.c_str(), MAX_PATH, fullpath, 0);
+        GetFullPathNameA(path.c_str(), MAX_PATH, fullpath, 0);
         std::string fp(fullpath);
-        if (GetFileAttributes(fp.c_str()) != FILE_ATTRIBUTE_DIRECTORY)
+        if (GetFileAttributesA(fp.c_str()) != FILE_ATTRIBUTE_DIRECTORY)
             return files;
 
         // get file names
-        WIN32_FIND_DATA findfiledata;
-        HANDLE hFind = FindFirstFile((LPCSTR)(fp + "\\*").c_str(), &findfiledata);
+        WIN32_FIND_DATAA findfiledata;
+        HANDLE hFind = FindFirstFileA((LPCSTR)(fp + "\\*").c_str(), &findfiledata);
         if (hFind != INVALID_HANDLE_VALUE)
         {
             do
             {
                 files.push_back(findfiledata.cFileName);
-            } while (FindNextFile(hFind, &findfiledata));
+            } while (FindNextFileA(hFind, &findfiledata));
             FindClose(hFind);
         }
 

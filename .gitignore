@@ -1,3 +1,5 @@
 app.log
 npadv
 obj/
+*.dll
+x64

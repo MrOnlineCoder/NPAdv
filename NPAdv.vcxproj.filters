@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Common">
+      <UniqueIdentifier>{b10a1be8-ba11-4094-98d9-82ac167c2201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Render">
+      <UniqueIdentifier>{afc5e732-6151-4aef-bbf5-1e657c49cbca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Game">
+      <UniqueIdentifier>{759db68c-cdd9-46ad-a904-bbdd38a6a1fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\State">
+      <UniqueIdentifier>{d893df47-8d91-49bb-a31d-9810031b8c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Resources">
+      <UniqueIdentifier>{4a98ffe5-f815-4181-bac4-6567870f8876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Game">
+      <UniqueIdentifier>{bcad6cf0-6b5c-4abf-8fa1-1416db56870c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Common">
+      <UniqueIdentifier>{946811d1-666c-42a7-84e3-5c872682f568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Render">
+      <UniqueIdentifier>{01e5426f-d5b6-4cc6-8ce6-d02f9851cc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\State">
+      <UniqueIdentifier>{06547704-b5a0-4a21-bc45-ac5f19249ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Resources">
+      <UniqueIdentifier>{8be85040-b357-4d05-b91f-b7fb24456632}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\Logger.cpp">
+      <Filter>Исходные файлы\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Common\MathUtils.cpp">
+      <Filter>Исходные файлы\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Render\AnimatedSprite.cpp">
+      <Filter>Исходные файлы\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Render\Animation.cpp">
+      <Filter>Исходные файлы\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\BattleshipsMinigame.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\DialogueUI.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Eval.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\FightMinigame.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\QuickShootMinigame.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Story.cpp">
+      <Filter>Исходные файлы\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\CreditsState.cpp">
+      <Filter>Исходные файлы\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\IntroState.cpp">
+      <Filter>Исходные файлы\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\MenuState.cpp">
+      <Filter>Исходные файлы\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\PlayState.cpp">
+      <Filter>Исходные файлы\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\StateManager.cpp">
+      <Filter>Исходные файлы\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources\AssetManager.cpp">
+      <Filter>Исходные файлы\Resources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Resources\AssetManager.hpp">
+      <Filter>Файлы заголовков\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\CreditsState.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\IntroState.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\MenuState.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\PlayState.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\State.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\State\StateManager.hpp">
+      <Filter>Файлы заголовков\State</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\AnimatedSprite.hpp">
+      <Filter>Файлы заголовков\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\Animation.hpp">
+      <Filter>Файлы заголовков\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Render\WrapText.hpp">
+      <Filter>Файлы заголовков\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Common\FilesystemUtils.hpp">
+      <Filter>Файлы заголовков\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Common\Logger.hpp">
+      <Filter>Файлы заголовков\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Common\MathUtils.hpp">
+      <Filter>Файлы заголовков\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\BattleshipsMinigame.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\DialogueUI.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Eval.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\FightMinigame.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Minigame.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\QuickShootMinigame.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Story.hpp">
+      <Filter>Файлы заголовков\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Application.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameContext.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+  </ItemGroup>
+</Project>

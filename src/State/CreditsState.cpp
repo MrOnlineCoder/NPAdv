@@ -12,6 +12,7 @@ const char *CREDITS_TEXT =
     "from Pixabay\n"
     "Game Start Sound from Elden Ring (a From Software game)\n"
     "\nMusic:\n"
+    "Turf Intro by El Huevro\n"
     "Covert Affair, Man Down, Five Armies, Guess Who, Mistake the Getaway\n"
     "Not As It Seems, Mystery Bazaar, Run Amok, Expeditionary by Kevin MacLeod\n"
     "Licensed under Creative Commons: By Attribution 4.0 License\n"

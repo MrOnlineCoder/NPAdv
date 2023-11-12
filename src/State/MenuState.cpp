@@ -1,4 +1,4 @@
-#include <State/MenuState.hpp>
+﻿#include <State/MenuState.hpp>
 MenuState::MenuState(GameContext *_gameCtx)
     : State(_gameCtx)
 {
@@ -82,7 +82,7 @@ void MenuState::onUpdate(float frameDelta)
         int newAlpha = 255 * (std::sin(m_titleAnimationFactor) + 1) / 2;
         m_playText.setFillColor(sf::Color(255, 255, 255, newAlpha));
 
-        if (m_titleAnimationFactor > 2 * M_PI)
+        if (m_titleAnimationFactor > 2 * 3.1415)
         {
             m_titleAnimationFactor = 0;
         }

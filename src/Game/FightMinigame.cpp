@@ -2,7 +2,7 @@
 
 #include <Common/Logger.hpp>
 
-const int WIN_THRESHOLD = 1; // change later
+const int WIN_THRESHOLD = 12; // change later
 
 const int HEARTS_PADDING = 16;
 const int HEARTS_MARGIN = 32;

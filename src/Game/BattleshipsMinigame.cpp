@@ -1,4 +1,4 @@
-#include <Game/BattleshipsMinigame.hpp>
+﻿#include <Game/BattleshipsMinigame.hpp>
 #include <Common/Logger.hpp>
 
 const int BATTLESHIP_CELL_SIZE = 64;

@@ -16,7 +16,7 @@ PlayState::PlayState(GameContext *_gameCtx)
 
     m_minigame = nullptr;
 
-    m_bgMusic.setVolume(90);
+    m_bgMusic.setVolume(80);
     m_bgMusic.setLoop(true);
 }
 
@@ -27,7 +27,7 @@ void PlayState::onEnter()
     m_gameContext.eval.reset();
 
     // DEBUG
-    // m_story.switchToDialogue("05_finale");
+    //m_story.switchToDialogue("04_sviat_offer");
 
     progressStory();
 }

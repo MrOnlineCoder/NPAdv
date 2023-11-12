@@ -60,7 +60,7 @@ void Story::loadFromFile(const std::string &filename)
     for (auto node : js)
     {
         StoryDialogue dialogue;
-        dialogue.id = node["dialogue_id"];
+        dialogue.id = node["dialogue_id"].get<std::string>();
         dialogue.statements.reserve(64);
 
         for (auto statement : node["statements"])
@@ -77,7 +77,7 @@ void Story::loadFromFile(const std::string &filename)
 
             if (statement.contains("if"))
             {
-                stmt.condition = statement["if"];
+                stmt.condition = statement["if"].get<std::string>();
             }
 
             if (statement.contains("speaker") && statement["speaker"].is_string())
@@ -87,14 +87,14 @@ void Story::loadFromFile(const std::string &filename)
 
             if (statement.contains("next_dialogue_id"))
             {
-                stmt.nextDialogueId = statement["next_dialogue_id"];
+                stmt.nextDialogueId = statement["next_dialogue_id"].get<std::string>();
                 if (stmt.text.length() == 0)
                     stmt.type = StoryDialogueStatementType::NEXT_DIALOGUE;
             }
 
             if (statement.contains("set_background"))
             {
-                stmt.setBackgroundId = statement["set_background"];
+                stmt.setBackgroundId = statement["set_background"].get<std::string>();
                 stmt.type = StoryDialogueStatementType::SET_BACKGROUND;
 
                 if (statement.contains("smooth"))
@@ -105,19 +105,19 @@ void Story::loadFromFile(const std::string &filename)
 
             if (statement.contains("set_music"))
             {
-                stmt.setMusicId = statement["set_music"];
+                stmt.setMusicId = statement["set_music"].get<std::string>();
                 stmt.type = StoryDialogueStatementType::SET_MUSIC;
             }
 
             if (statement.contains("delay"))
             {
-                stmt.delayTime = statement["delay"];
+                stmt.delayTime = statement["delay"].get<float>();
                 stmt.type = StoryDialogueStatementType::DELAY;
             }
 
             if (statement.contains("play_sound"))
             {
-                stmt.soundName = statement["play_sound"];
+                stmt.soundName = statement["play_sound"].get<std::string>();
                 stmt.type = StoryDialogueStatementType::PLAY_SOUND;
             }
 
@@ -133,9 +133,9 @@ void Story::loadFromFile(const std::string &filename)
                 {
                     StoryDialogueChoiceItem choice;
                     choice.text = converter.from_bytes(choiceNode["text"]);
-                    choice.nextDialogueId = choiceNode["next_dialogue_id"];
+                    choice.nextDialogueId = choiceNode["next_dialogue_id"].get<std::string>();
                     if (choiceNode.contains("if"))
-                        choice.ifFlag = choiceNode["if"];
+                        choice.ifFlag = choiceNode["if"].get<std::string>();
                     stmt.choices.push_back(choice);
                 }
                 stmt.type = StoryDialogueStatementType::CHOICE;
@@ -149,15 +149,15 @@ void Story::loadFromFile(const std::string &filename)
             if (statement.contains("minigame"))
             {
                 stmt.type = StoryDialogueStatementType::MINIGAME;
-                stmt.minigame = statement["minigame"];
-                stmt.minigameLoseDialogue = statement["lose_dialogue_id"];
-                stmt.minigameWinDialogue = statement["win_dialogue_id"];
+                stmt.minigame = statement["minigame"].get<std::string>();
+                stmt.minigameLoseDialogue = statement["lose_dialogue_id"].get<std::string>();
+                stmt.minigameWinDialogue = statement["win_dialogue_id"].get<std::string>();
             }
 
             if (statement.contains("set_variable"))
             {
                 stmt.type = StoryDialogueStatementType::SET_VARIABLE;
-                stmt.setVariableName = statement["set_variable"];
+                stmt.setVariableName = statement["set_variable"].get<std::string>();
             }
 
             dialogue.statements.push_back(stmt);
