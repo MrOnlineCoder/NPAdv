@@ -14,6 +14,16 @@ Simple visual novel built for local Telegram group, based on the content, memes 
 -   Sounds from Pixabay
 -   Features 3 minigames: quick shooting, classical battleships and improvised turn-based fighting (although very unbalanced)
 
+## Building
+
+`make run`
+
+Requirements:
+
+-   installed SFML 2.5.1+ and it's extlibs
+-   GCC or CLANG
+-   lua installed
+
 ## Note
 
 The source code is provided just for reference and for archival purposes. If you are not a member of the chat mentioned above, high chances you will have no idea about characters or the lines used by them.
